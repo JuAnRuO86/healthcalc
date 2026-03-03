@@ -17,7 +17,7 @@ import healthcalc.exceptions.InvalidHealthDataException;
  * 
  * Fórmula:
  * Para hombres: IBW = altura (cm) - 100 - ((altura (cm) - 150) / 4)
- * Para mujeres: IBW = altura (cm) - 100 - ((altura (cm) - 150) / 2.5)
+ * Para mujeres: IBW = altura (cm) - 100 - ((altura (cm) - 150) / 2)
  */
 
 @DisplayName("Tests para IBW - Lorentz")
@@ -47,7 +47,7 @@ public class IBWLorentzTest {
         @DisplayName("Cálculo correcto para mujeres con altura estándar")
             void testIbwMujerValido() throws InvalidHealthDataException {
                 double height = 170.0;
-                double expected = height - 100 - ((height - 150) / 2.5);
+                double expected = height - 100 - ((height - 150) / 2);
 
                 double result = healthCalc.ibwLorentz(height, 'f');
                 assertEquals(expected, result, 0.01);
