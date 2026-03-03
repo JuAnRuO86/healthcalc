@@ -57,7 +57,40 @@ Para que el proyecto cumpla con estándares de software médico, se deben inclui
 
 ---
 
-* **M2: Peso Corporal Ideal (PCI) o _Ideal Body Weight (IBW)_:** El PCI estima el peso teórico que se asocia con el menor riesgo de mortalidad y una mejor salud para un persona.
+* **M2: Índice de Masa Corporal Completo (IMC) o _Body Mass Index (BMI)_:** El IMC es es un indicador completo, adoptado por la [Organización Mundial de la Salud (OMS)](https://www.who.int/es), que evalúa la adecuación del peso de una persona en relación con su altura para estimar la grasa corporal.
+
+    * **Fórmula:** $IMC = \frac{\text{peso (kg)}}{\text{altura (m)}^2}$
+
+    El IMC nos permite clasificar el estado nutricional de una persona en categorías. La OMS ha definido la siguiente clasificación estándar del estado nutricional en adultos:
+
+      - Delgadez Severa ($<16$)
+      - Delgadez Moderada ($16-16.99$)
+      - Delgadez Leve ($17-18.49$)
+      - Normal ($18.5-24.99$)
+      - Sobrepeso ($25-29.9$)
+      - Obesidad Clase I ($30-34.99$)
+      - Obesidad Clase II ($35-39.99$)
+      - Obesidad Clase III ($>=40$)
+
+---
+if (bmi < 16) {
+            result = "Severe Thinness";
+        } else if (bmi >= 16 && bmi < 17) {
+            result = "Moderate Thinness";
+        } else if (bmi >= 17 && bmi < 18.5) {
+            result = "Mild Thinness";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            result = "Normal";
+        } else if (bmi >= 25 && bmi < 30) {
+            result = "Overweight";
+        } else if (bmi >= 30 && bmi < 35) {
+            result = "Obese Class I";
+        } else if (bmi >= 35 && bmi < 40) {
+            result = "Obese Class II";
+        } else if (bmi >= 40) {
+            result = "Obese Class III";
+        }
+* **M3: Peso Corporal Ideal (PCI) o _Ideal Body Weight (IBW)_:** El PCI estima el peso teórico que se asocia con el menor riesgo de mortalidad y una mejor salud para un persona.
 
     4. **Fórmula de Lorentz (1929)**
     Es la fórmula más sencilla de aplicar manualmente ya que utiliza directamente la estatura en centímetros y no requiere conversiones a pulgadas.
@@ -98,7 +131,7 @@ Para que el proyecto cumpla con estándares de software médico, se deben inclui
 <details>
 <summary><b>Métricas Metabólicas y Nutricionales</b></summary>
 
-* **M6: Tasa Metabólica Basal (TMB) o _Basal Metabolic Rate (BMR)_:** El TMB calcula la cantidad mínima de energía (calorías) que el cuerpo necesita en reposo absoluto. 
+* **M4: Tasa Metabólica Basal (TMB) o _Basal Metabolic Rate (BMR)_:** El TMB calcula la cantidad mínima de energía (calorías) que el cuerpo necesita en reposo absoluto. 
 
     3. **Ecuación de Katch-McArdle**
     A diferencia de las anteriores, esta fórmula no distingue entre sexos, sino que utiliza la Masa Corporal Magra (peso sin grasa). Es ideal si conoces tu porcentaje de grasa corporal.

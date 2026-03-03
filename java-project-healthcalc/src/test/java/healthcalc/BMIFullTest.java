@@ -130,6 +130,17 @@ public class BMIFullTest {
             assertEquals(expected, result);
         }
 
+        @ParameterizedTest(name = "BMI {0} debe ser clasificado como Mild Thinness")
+        @ValueSource(doubles = {17.0, 17.8, 18.4})
+        @DisplayName("Validación de categoría Mild Thinness (Delgadez leve)")
+        void testBmiMildThinness(double bmi) throws InvalidHealthDataException {
+            String expected = "Mild Thinness";
+
+            String result = healthCalc.bmiClassificationFull(bmi);
+
+            assertEquals(expected, result);
+        }
+
         @ParameterizedTest(name = "BMI {0} debe ser clasificado como Normal")
         @ValueSource(doubles = {18.5, 22.0, 24.9})
         @DisplayName("Validación de categoría Normal")
