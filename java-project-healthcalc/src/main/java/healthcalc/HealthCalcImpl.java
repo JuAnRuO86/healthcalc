@@ -54,9 +54,9 @@ public class HealthCalcImpl implements HealthCalc {
         } else if (bmi >= 30 && bmi < 35) {
             result = "Obese Class I";
         } else if (bmi >= 35 && bmi < 40) {
-            result = "Obesse Class II";
+            result = "Obese Class II";
         } else if (bmi >= 40) {
-            result = "Obesse Class III";
+            result = "Obese Class III";
         }
         return result;
     }
