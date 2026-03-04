@@ -157,6 +157,11 @@ Para que el proyecto cumpla con estándares de software médico, se deben inclui
         - `TMB = 370 + (21.6 × Masa Corporal Magra en kg)`
             > **Nota:** Masa Magra = Peso total × (1 - % de grasa decimal)
 
+    **Información adicional:**
+        - Suele ser más precisa en personas con composiciones corporales atípicas (deportistas, personas muy musculadas o con bajo porcentaje graso).
+        - Requiere una estimación fiable del porcentaje de grasa corporal; si este dato es inexacto, el resultado del TMB también lo será.
+        - Es especialmente útil en contextos de nutrición deportiva y recomposición corporal.
+
     4. **Ecuación de la OMS (FAO/WHO/UNU)**
     Utilizada a menudo en estudios de salud pública, divide el cálculo por rangos de edad específicos: 
 
