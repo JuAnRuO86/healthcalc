@@ -51,4 +51,28 @@ public interface HealthCalc {
 	 * @throws Exception
 	 */
 	public double bmi(double weight, double height) throws InvalidHealthDataException;
+
+
+	/**
+	 * Calculate the Basal Metabolic Rate (BMR) of a person with the Katch-McArdle formula:
+	 * 
+	 * @param weight			Weight of the person (kg).
+	 * @param bodyFatPercentage	Body fat percentage of the person (0.0 to 1.0).
+	 * @return					The Basal Metabolic Rate of the person (kcal/day).
+	 * @throws InvalidHealthDataException
+	 */
+	public double bmrKatchMcArdle(double weight, double bodyFatPercentage) throws InvalidHealthDataException;
+
+	/**
+	 * Calculate the Ideal Body Weight (IBW) of a person with the Lorentz formula:
+	 * @param height 	Height of the person (cm).
+	 * @return	  		The Ideal Body Weight of the person (kg).	
+	 * @throws InvalidHealthDataException
+	 * Fórmula:
+	 * IBW = (altura - 100) - ((altura - 150) / 4) para hombres
+	 * IBW = (altura - 100) - ((altura - 150) / 2) para mujeres
+	 */
+
+    public double ibwLorentz(double height,char gender) throws InvalidHealthDataException;
+
 }

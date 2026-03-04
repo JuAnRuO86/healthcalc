@@ -138,6 +138,20 @@ if (bmi < 16) {
         - `TMB = 370 + (21.6 × Masa Corporal Magra en kg)`
             > **Nota:** Masa Magra = Peso total × (1 - % de grasa decimal)
 
+    **Información adicional:**
+        - Suele ser más precisa en personas con composiciones corporales atípicas (deportistas, personas muy musculadas o con bajo porcentaje graso).
+        - Requiere una estimación fiable del porcentaje de grasa corporal; si este dato es inexacto, el resultado del TMB también lo será.
+        - Es especialmente útil en contextos de nutrición deportiva y recomposición corporal.
+
+    4. **Ecuación de la OMS (FAO/WHO/UNU)**
+    Utilizada a menudo en estudios de salud pública, divide el cálculo por rangos de edad específicos: 
+
+        | Edad (Años) | Hombres | Mujeres |
+        | :--- | :--- | :--- |
+        | **18 – 30** | `(15.057 × peso) + 692.2` | `(14.818 × peso) + 486.6` |
+        | **30 – 60** | `(11.472 × peso) + 873.1` | `(8.126 × peso) + 845.6` |
+        | **> 60** | `(11.711 × peso) + 587.7` | `(9.082 × peso) + 658.5` |
+
 ---
 
 ## Plan de pruebas
