@@ -12,8 +12,8 @@ import java.util.Scanner;
  */
 
 
-public class main {
-    public static void Main(String[] args) {
+public class Main {
+    public static void main(String[] args) {
         // 1. Creamos el objeto de nuestra calculadora
         HealthCalc healthCalc = new HealthCalcImpl();
         // 2. Preparamos el Scanner para leer del teclado (System.in)
