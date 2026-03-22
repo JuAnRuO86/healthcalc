@@ -34,20 +34,9 @@ Escenario de éxito (Flujo Básico):
 6. El sistema muestra en pantalla el resultado numérico y la clasificación (ej: "22.5 - Normal").
 
 Extensiones (Flujos Alternativos):
-1a. Peso igual a cero o negativo:
-	1.El sistema detecta un valor inválido.
-	2.El sistema muestra un mensaje de error: "Los valores deben ser mayores a cero".
-	3.El sistema vuelve al punto 1 del escenario principal.
-1b. Peso superior al límite superior asignado.
-	1.El sistema detecta un valor inválido.
-	2.El sistema muestra un mensaje de error: "Peso debe estar entre el rango biológico asignado en kg". 
-3a. Altura igual a cero o negativo:
-	1.El sistema detecta un valor inválido.
-	2.El sistema muestra un mensaje de error: "Los valores deben ser mayores a cero".
-	3.El sistema vuelve al punto 1 del escenario principal.
-3b. Altura introducida en centímetros (ej: 175 en lugar de 1.75):
-	1.El sistema detecta que el valor es superior a un límite razonable para metros (ej: > 3).
-	2.El sistema convierte automáticamente a metros dividiendo por 100 o solicita aclaración al usuario.
-6a. Resultado de Obesidad Clase III (>= 40):
-	1.El sistema muestra el resultado resaltado en color de alerta (rojo).
-	2.El sistema sugiere consultar con un profesional médico debido al riesgo clínico elevado.
+1a. Peso igual a cero o negativo: El sistema detecta un valor inválido, envía un mensaje de error y vuelve al paso 1.
+1b. Peso superior al límite superior asignado: EL sistema detecta que el valor es superior al límite establecido y envía un mensaje de error.
+3a. Altura igual a cero o negativo: El sistema muestra un mensaje de error y vuelve al punto 1 del escenario principal.
+3b. Altura introducida en centímetros (ej: 175 en lugar de 1.75): El sistema detecta que el valor es superior al límite establecido para metros(>3), lo convierte automáticamente a cm dividiendo por 100 y lo comunica al usuario.
+6a. Resultado de Obesidad Clase III (>= 40): El sistema muestra el resultado en rojo sugiriendo consultar con un profesional médico.
+
