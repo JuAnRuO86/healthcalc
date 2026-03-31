@@ -1,4 +1,4 @@
-package healthcalc.bdd;
+package stepdefinitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
