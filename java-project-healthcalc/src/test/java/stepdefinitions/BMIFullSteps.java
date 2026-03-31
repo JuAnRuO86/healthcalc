@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import healthcalc.HealthCalc;
 import healthcalc.HealthCalcImpl;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.es.Cuando;
+import io.cucumber.java.es.Dado;
+import io.cucumber.java.es.Entonces;
 
 public class BMIFullSteps {
     private HealthCalc healthcalc;
@@ -16,43 +16,45 @@ public class BMIFullSteps {
     private String resultado;
     private boolean exceptionThrown;
 
-    @Given("La calculadora de salud está iniciada")
+    @Dado("la calculadora de salud está iniciada")
     public void la_calculadora_de_salud_está_iniciada() {
-        healthcalc = new HealthCalcImpl();
+        this.healthcalc = new HealthCalcImpl();
     }
-    @Given("El peso introducido en kg es {double1}")
+    @Dado("el peso introducido es {double}")
     public void el_peso_introducido_es(double double1) {
-        weight = double1;
+        this.weight = double1;
 
     }
-      @Given("La altura introducida en centímetros es {double1}")
+    @Dado("la altura introducida es {double}")
     public void la_altura_introducida_es(double double1) {
-        height = double1;
+        this.height = double1;
 
     }
 
-    @When("Ejecuto la operación de BMI")
+    @Cuando("ejecuto la operación de BMI")
     public void ejecuto_la_operación_de_BMI() {
         try {
-            bmi = healthcalc.bmi(weight, height/100);
-            resultado = healthcalc.bmiClassification(bmi);
+            this.bmi = healthcalc.bmi(weight, (height/100.0));
+            this.resultado = healthcalc.bmiClassification(this.bmi);
             exceptionThrown = false;
         } catch (Exception e) {
             exceptionThrown = true;
         }
     }
 
-    @Then("El BMI debe ser {double}")
+    @Entonces("el bmi debe ser {double}")
     public void el_bmi_debe_ser(double double1) {
-        assertEquals(double1, bmi);
+        // El 0.01 es el margen de error. 
+        // Dice: "Si la diferencia es menor a 0.01, acéptalo como válido".
+        assertEquals(double1, bmi, 0.01);
     }
 
-    @Then("El resultado debe ser {String}")
+    @Entonces("el resultado debe ser {string}")
     public void el_resultado_debe_ser(String String1) {
-        assertEquals(String1, resultado);
+        assertEquals(String1, this.resultado);
     }
 
-    @Then("El sistema debe lanzar una excepción")
+    @Entonces("el sistema debe lanzar una excepción")
     public void el_sistema_debe_lanzar_una_excepción() {
         assertEquals(true, exceptionThrown);
     }
