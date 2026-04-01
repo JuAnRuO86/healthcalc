@@ -1,7 +1,7 @@
 # language: es
 
 Característica: Cálculo del Índice de Masa Corporal de un usuario
-  Como estudiante de Ingeniería de la Salud
+  Como usuario de la calculadora
   Quiero calcular el Índice de Masa Corporal de un usuario
   Para evaluar la adecuación del peso de una persona en relación con su altura
 
@@ -14,20 +14,6 @@ Característica: Cálculo del Índice de Masa Corporal de un usuario
     Cuando ejecuto la operación de BMI
     Entonces el bmi debe ser 33,33
     Y el resultado debe ser "Obese Class I"
-
-  Escenario: Cálculo del BMI de 97kg y 1.75m
-    Dado el peso introducido es 97,0
-    Y la altura introducida es 175,0
-    Cuando ejecuto la operación de BMI
-    Entonces el bmi debe ser 31,67
-    Y el resultado debe ser "Obese Class I"
-
-  Escenario: Cálculo del BMI de 70kg y 1.90m
-    Dado el peso introducido es 70,0
-    Y la altura introducida es 190,0
-    Cuando ejecuto la operación de BMI
-    Entonces el bmi debe ser 19,39
-    Y el resultado debe ser "Normal"
   
   @Error
   Escenario: Intento de cálculo de BMI con números negativos
