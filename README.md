@@ -325,3 +325,23 @@ Para cada categoría, probamos valores que están justo en el límite para asegu
 - Ejecutar los tests con informe de cobertura (previamente configurado en pom.xml): `mvn test`
 
 </details>
+
+## Behaviour Driven Development
+### Característica: Cálculo del Índice de Masa Corporal de un usuario
+Como usuario de la calculadora
+
+Quiero calcular el Índice de Masa Corporal de un usuario
+
+Para evaluar la adecuación del peso de una persona en relación con su altura
+
+    Escenario: Cálculo del BMI con datos válidos
+    
+    Escenario: Intento de cálculo de BMI con números negativos
+    
+    Escenario: Intento de cálculo de BMI con número fuera del rango establecido para el peso
+    
+    Escenario: Intento de cálculo de BMI con número fuera del rango establecido para la altura
+    
+    Esquema del Escenario: Verificación de cálculos exitosos múltiples
+
+[bmi_full.feature](https://github.com/ISAgrupo08/healthcalc/blob/2e38d99d235410affb35569a4598c1ac63ff5c43/java-project-healthcalc/src/test/resources/bmi_full.feature)
