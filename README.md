@@ -361,4 +361,4 @@ Para tener una referencia de mi estado de salud
 
     Esquema del escenario: Cálculo del IBW según características del usuario
 
-[ibw.feature] (https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/ibw.feature)
+[ibw.feature](https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/ibw.feature)
