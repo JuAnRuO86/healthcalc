@@ -345,3 +345,20 @@ Para evaluar la adecuación del peso de una persona en relación con su altura
     Esquema del Escenario: Verificación de cálculos exitosos múltiples
 
 [bmi_full.feature](https://github.com/ISAgrupo08/healthcalc/blob/2e38d99d235410affb35569a4598c1ac63ff5c43/java-project-healthcalc/src/test/resources/bmi_full.feature)
+
+### Característica: Cálculo del Peso Corporal Ideal 
+Como usuario de la calculadora de salud
+  
+Quiero conocer mi peso ideal según mi altura y sexo
+  
+Para tener una referencia de mi estado de salud
+
+    Escenario: Cálculo correcto del IBW con datos válidos
+
+    Escenario: Intento de cálculo con datos incompletos
+
+    Escenario: Datos introducidos fuera de rango
+
+    Esquema del escenario: Cálculo del IBW según características del usuario
+
+[ibw.feature] (https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/ibw.feature)
