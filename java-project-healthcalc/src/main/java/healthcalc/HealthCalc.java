@@ -74,4 +74,16 @@ public interface HealthCalc {
 
     public double ibwLorentz(double height,char gender) throws InvalidHealthDataException;
 
+	/**
+	 * Calculate the Energy Requirement (ER) of a person with the Harris-Benedict formula:
+	 * @param sexo
+	 * @param edad
+	 * @param peso
+	 * @param altura
+	 * @param actividad
+	 * @return
+	 * @throws InvalidHealthDataException
+	 */
+	public double eer(String sexo, int edad, double peso, double altura, String actividad) throws InvalidHealthDataException;
+
 }
