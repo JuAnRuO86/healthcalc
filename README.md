@@ -362,3 +362,20 @@ Para tener una referencia de mi estado de salud
     Esquema del escenario: Cálculo del IBW según características del usuario
 
 [ibw.feature](https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/ibw.feature)
+
+### Característica: Cálculo del Requerimiento Energético Estimado
+Como usuario de la calculadora de salud
+
+Quiero conocer mi requerimiento energético estimado diario
+
+Para saber cuántas calorías debo consumir según mis características
+
+    Escenario: Cálculo correcto del EER con datos válidos
+
+    Escenario: Intento de cálculo con datos incompletos
+
+    Escenario: Datos introducidos fuera de rango
+
+    Esquema del escenario: Cálculo del EER según características del usuario
+
+[eer.feature](https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/eer.feature)
