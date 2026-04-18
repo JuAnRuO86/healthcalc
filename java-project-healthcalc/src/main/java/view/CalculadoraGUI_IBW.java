@@ -24,6 +24,12 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JToggleButton;
+import javax.swing.ButtonGroup;
+
+import healthcalc.HealthCalc;
+import healthcalc.HealthCalcImpl;
+import healthcalc.exceptions.InvalidHealthDataException;
 
 public class CalculadoraGUI_IBW extends JFrame {
 
@@ -31,6 +37,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 	private JPanel contentPane;
 	private JTextField textIBW;
 	private JTextField textresultado_IBW;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -55,17 +62,20 @@ public class CalculadoraGUI_IBW extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 128, 255));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panelMetricaContainer = new JPanel();
+		panelMetricaContainer.setBackground(new Color(106, 106, 255));
 		panelMetricaContainer.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelMetricaContainer.setBounds(100, 50, 400, 350);
 		contentPane.add(panelMetricaContainer);
 		panelMetricaContainer.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(72, 72, 255));
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
 		panel.setBounds(20, 30, 350, 200);
 		panelMetricaContainer.add(panel);
@@ -89,7 +99,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 		panel.add(lblsexo_IBW);
 		
 		JComboBox comboSexo_IBW = new JComboBox();
-		comboSexo_IBW.setModel(new DefaultComboBoxModel(new String[] {"masculino", "femenino"}));
+		comboSexo_IBW.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
 		comboSexo_IBW.setBounds(110, 140, 80, 20);
 		panel.add(comboSexo_IBW);
 		
@@ -105,14 +115,64 @@ public class CalculadoraGUI_IBW extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		textresultado_IBW = new JTextField();
+		textresultado_IBW.setEditable(false);
 		textresultado_IBW.setBounds(175, 256, 96, 18);
 		panelMetricaContainer.add(textresultado_IBW);
 		textresultado_IBW.setColumns(10);
+		
+		JLabel lblExito = new JLabel(" ÉXITO");
+		lblExito.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblExito.setVisible(false);
+		lblExito.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
+		lblExito.setForeground(new Color(0, 255, 0));
+		lblExito.setBounds(520, 250, 120, 100);
+		contentPane.add(lblExito);
+		
+		JLabel lblError = new JLabel("ERROR");
+		lblError.setVisible(false);
+		lblError.setForeground(new Color(255, 0, 0));
+		lblError.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblError.setBackground(new Color(255, 255, 255));
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblError.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblError.setBounds(520, 250, 120, 100);
+		contentPane.add(lblError);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					lblExito.setVisible(false);
+					lblError.setVisible(false);
+					textresultado_IBW.setText("");
+					
+					// Obtener altura
+					double altura = Double.parseDouble(textIBW.getText());
+					// Obtener género del ComboBox y pasarlo a char
+					String seleccion = comboSexo_IBW.getSelectedItem().toString();
+					char genero = (seleccion.equalsIgnoreCase("Masculino")) ? 'm' : 'f';
+					
+					HealthCalc calc = new HealthCalcImpl();
+					double resultado = calc.ibwLorentz(altura, genero);
+					// Mostrar resultado
+					textresultado_IBW.setText(String.format("%.2f", resultado));
+					lblExito.setVisible(true);
+					
+				} catch (NumberFormatException ex) {
+					// Error si el usuario mete letras o deja vacío
+					lblError.setVisible(true);
+					System.out.println(ex.getMessage());
+				} catch (InvalidHealthDataException ex) {
+					// Errores controlados por vuestro ibwLorentz (ej. altura < 30)
+					lblError.setVisible(true);
+					System.out.println(ex.getMessage());
+				} catch (Exception ex) {
+					// Cualquier otro error inesperado
+					lblError.setVisible(true);
+					textresultado_IBW.setText("Error inesperado");
+				}
 			}
 		});
 		btnCalcular.setBounds(520, 150, 120, 40);
@@ -124,36 +184,59 @@ public class CalculadoraGUI_IBW extends JFrame {
 		lblMetrica.setBounds(100, 10, 400, 30);
 		contentPane.add(lblMetrica);
 		
-		JLabel lblExito = new JLabel(" ÉXITO");
-		lblExito.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblExito.setVisible(false);
-		lblExito.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
-		lblExito.setForeground(new Color(0, 255, 0));
-		lblExito.setBounds(520, 250, 120, 100);
-		contentPane.add(lblExito);
 		
-		JLabel lblFracaso = new JLabel("ERROR");
-		lblFracaso.setVisible(false);
-		lblFracaso.setForeground(new Color(255, 0, 0));
-		lblFracaso.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblFracaso.setBackground(new Color(255, 255, 255));
-		lblFracaso.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFracaso.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblFracaso.setBounds(520, 250, 120, 100);
-		contentPane.add(lblFracaso);
+		JToggleButton tglbtnBMI = new JToggleButton("BMI");
+		buttonGroup.add(tglbtnBMI);
+		tglbtnBMI.setBackground(new Color(255, 255, 255));
+		tglbtnBMI.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tglbtnBMI.setBounds(20, 100, 82, 20);
+		contentPane.add(tglbtnBMI);
+		tglbtnBMI.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Creamos la ventana de BMI
+		        CalculadoraGUI_BMI ventanaBMI = new CalculadoraGUI_BMI();
+		        ventanaBMI.setVisible(true);
+		        // Cerramos la actual
+		        dispose();
+		    }
+		});
 		
-		JButton btnBMI = new JButton("BMI");
-		btnBMI.setBounds(20, 100, 85, 20);
-		contentPane.add(btnBMI);
+		JToggleButton tglbtnIBW = new JToggleButton("IBW");
+		tglbtnIBW.setSelected(true);
+		buttonGroup.add(tglbtnIBW);
+		tglbtnIBW.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tglbtnIBW.setBounds(20, 140, 82, 20);
+		contentPane.add(tglbtnIBW);
 		
-		JButton btnIBW = new JButton("IBW");
-		btnIBW.setBounds(20, 140, 85, 20);
-		contentPane.add(btnIBW);
+		JToggleButton tglbtnEER = new JToggleButton("REE");
+		buttonGroup.add(tglbtnEER);
+		tglbtnEER.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tglbtnEER.setBounds(20, 180, 82, 20);
+		contentPane.add(tglbtnEER);
+		tglbtnEER.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Creamos la ventana de REE
+		        CalculadoraGUI_Eer ventanaREE = new CalculadoraGUI_Eer();
+		        ventanaREE.setVisible(true);
+		        // Cerramos la actual
+		        dispose();
+		    }
+		});
 		
-		JButton btnERR = new JButton("REE");
-		btnERR.setBounds(20, 180, 85, 20);
-		contentPane.add(btnERR);
+		JButton btnInicio = new JButton("VOLVER");
+		btnInicio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInicio.setBounds(520, 20, 120, 40);
+		contentPane.add(btnInicio);
+		btnInicio.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Creamos la instancia de la pantalla de inicio
+		        CalculadoraGUI_Inicio pantallaInicio = new CalculadoraGUI_Inicio();
+		        
+		        pantallaInicio.setVisible(true);
+		        // Cerramos la ventana actual (IBW) para que no se queden mil ventanas abiertas
+		        dispose(); 
+		    }
+		});
 
 	}
 }
