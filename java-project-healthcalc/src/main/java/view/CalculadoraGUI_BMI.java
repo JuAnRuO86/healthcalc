@@ -15,6 +15,11 @@ import java.awt.CardLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
+
+import healthcalc.HealthCalc;
+import healthcalc.HealthCalcImpl;
+import healthcalc.exceptions.InvalidHealthDataException;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -59,6 +64,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 	 * Create the frame.
 	 */
 	public CalculadoraGUI_BMI() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 600);
 		contentPane = new JPanel();
@@ -70,7 +76,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 		JPanel panelMetricaContainer = new JPanel();
 		panelMetricaContainer.setBackground(new Color(160, 218, 193));
 		panelMetricaContainer.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panelMetricaContainer.setBounds(100, 85, 400, 411);
+		panelMetricaContainer.setBounds(100, 85, 400, 450);
 		contentPane.add(panelMetricaContainer);
 		panelMetricaContainer.setLayout(null);
 		
@@ -138,6 +144,13 @@ public class CalculadoraGUI_BMI extends JFrame {
 		textResultadoClasificacion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textResultadoClasificacion.setColumns(10);
 		
+		JLabel lblTipoError = new JLabel("");
+		lblTipoError.setForeground(new Color(255, 0, 0));
+		lblTipoError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoError.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTipoError.setBounds(10, 384, 380, 54);
+		panelMetricaContainer.add(lblTipoError);
+		
 		JLabel lblExito = new JLabel("ÉXITO");
 		lblExito.setVisible(false);
 		lblExito.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -197,7 +210,52 @@ public class CalculadoraGUI_BMI extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					//Reseteamos
+					lblExito.setVisible(false);
+	                lblError.setVisible(false);
+	                lblTipoError.setText("");
+	                textResultadoBMI.setText("");
+	                textResultadoClasificacion.setText("");
+	                //Obtener datos
+	                String strAltura = textFieldAltura.getText();
+	                String strPeso = textFieldPeso.getText();
+	                
+	                // 3. Validar que no estén vacíos antes de parsear
+	                if (strAltura.isEmpty() || strPeso.isEmpty()) {
+	                    throw new Exception("Campos vacíos");
+	                }
+	                double peso = Double.parseDouble(strPeso);
+	             // Convertimos la altura de cm a metros para que HealthCalcImpl no lance excepción de rango
+	                double alturaCm = Double.parseDouble(strAltura);
+	                double alturaMetros = alturaCm / 100.0;
+	                
+                    HealthCalc calc = new HealthCalcImpl();
+                    double bmi = calc.bmi(peso, alturaMetros);
+                    String clasificacion = calc.bmiClassification(bmi);
+                    
+                    // Mostrar resultado
+                    textResultadoBMI.setText(String.format("%.2f", bmi));
+                    textResultadoClasificacion.setText(clasificacion);
+                    lblExito.setVisible(true);
 				
+				} catch (NumberFormatException ex) {
+		            // Error al convertir texto a número (letras, símbolos...)
+		            lblError.setVisible(true);
+		            lblTipoError.setText("Error en peso, use números en cm (ej: 175)");
+		        } catch (InvalidHealthDataException ex) {
+		            // Errores de lógica (peso < 0, altura fuera de rango biológico, etc.)
+		            lblError.setVisible(true);
+		            textResultadoBMI.setText("");
+		            textResultadoClasificacion.setText("");
+		            lblTipoError.setText(ex.getMessage());
+		        } catch (Exception ex) {
+		            // Cualquier otro error
+		            lblError.setVisible(true);
+		            textResultadoBMI.setText("");
+		            textResultadoClasificacion.setText("");
+		            lblTipoError.setText(ex.getMessage());
+		        }
 			}
 		});
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -211,7 +269,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 		lblMtricaBmi.setBounds(100, 45, 400, 30);
 		contentPane.add(lblMtricaBmi);
 		
-		JButton btnInicio = new JButton("Volver");
+		JButton btnInicio = new JButton("VOLVER");
 		btnInicio.setBackground(new Color(108, 193, 162));
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,7 +279,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 			}
 		});
 		btnInicio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnInicio.setBounds(551, 513, 100, 40);
+		btnInicio.setBounds(520, 20, 120, 40);
 		contentPane.add(btnInicio);
 
 	}
