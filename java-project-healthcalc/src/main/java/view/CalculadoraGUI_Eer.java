@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
+
+import healthcalc.HealthCalc;
+import healthcalc.HealthCalcImpl;
+import healthcalc.exceptions.InvalidHealthDataException;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -54,7 +59,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 	 */
 	public CalculadoraGUI_Eer() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 675, 500);
+		setBounds(100, 100, 675, 600);
 		MetricaEER = new JPanel();
 		MetricaEER.setBackground(new Color(205, 235, 222));
 		MetricaEER.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -65,7 +70,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 		JPanel DatosEER = new JPanel();
 		DatosEER.setBackground(new Color(160, 218, 193));
 		DatosEER.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		DatosEER.setBounds(100, 50, 400, 350);
+		DatosEER.setBounds(100, 85, 400, 450);
 		MetricaEER.add(DatosEER);
 		DatosEER.setLayout(null);
 		
@@ -171,27 +176,34 @@ public class CalculadoraGUI_Eer extends JFrame {
 		JLabel lblResultado = new JLabel("Resultado:");
 		lblResultado.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblResultado.setBounds(50, 300, 100, 25);
+		lblResultado.setBounds(20, 300, 100, 25);
 		DatosEER.add(lblResultado);
 		
 		tfResultado_EER = new JTextField();
 		tfResultado_EER.setEditable(false);
 		tfResultado_EER.setHorizontalAlignment(SwingConstants.CENTER);
-		tfResultado_EER.setBounds(150, 300, 150, 25);
+		tfResultado_EER.setBounds(130, 300, 150, 25);
 		DatosEER.add(tfResultado_EER);
 		tfResultado_EER.setColumns(10);
+		
+		JLabel lblTipoError = new JLabel("");
+		lblTipoError.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTipoError.setForeground(new Color(255, 0, 0));
+		lblTipoError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoError.setBounds(20, 350, 350, 70);
+		DatosEER.add(lblTipoError);
+		
+		JLabel lblUnidad = new JLabel("kcal");
+		lblUnidad.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUnidad.setBounds(300, 300, 40, 25);
+		DatosEER.add(lblUnidad);
 		
 		JLabel lblMetrica = new JLabel("MÉTRICA REE");
 		lblMetrica.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblMetrica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMetrica.setBounds(100, 10, 400, 30);
+		lblMetrica.setBounds(100, 45, 400, 30);
 		MetricaEER.add(lblMetrica);
-		
-		JButton btnCalcular = new JButton("CALCULAR");
-		btnCalcular.setBackground(new Color(108, 193, 162));
-		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnCalcular.setBounds(520, 150, 120, 40);
-		MetricaEER.add(btnCalcular);
 		
 		JLabel lblError = new JLabel("ERROR");
 		lblError.setVisible(false);
@@ -199,7 +211,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 		lblError.setForeground(new Color(255, 0, 0));
 		lblError.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setBounds(520, 250, 120, 100);
+		lblError.setBounds(520, 350, 120, 100);
 		MetricaEER.add(lblError);
 		
 		JLabel lblExito = new JLabel("ÉXITO");
@@ -207,7 +219,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 		lblExito.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExito.setForeground(new Color(0, 255, 0));
-		lblExito.setBounds(520, 250, 120, 100);
+		lblExito.setBounds(520, 350, 120, 100);
 		MetricaEER.add(lblExito);
 		
 		JToggleButton tglbtnBMI = new JToggleButton("BMI");
@@ -223,7 +235,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 		tglbtnBMI.setBackground(new Color(108, 193, 162));
 		bgMetricas.add(tglbtnBMI);
 		tglbtnBMI.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnBMI.setBounds(20, 100, 82, 20);
+		tglbtnBMI.setBounds(20, 140, 82, 20);
 		MetricaEER.add(tglbtnBMI);
 		
 		JToggleButton tglbtnIBW = new JToggleButton("IBW");
@@ -240,7 +252,7 @@ public class CalculadoraGUI_Eer extends JFrame {
 		tglbtnIBW.setBackground(new Color(108, 193, 162));
 		bgMetricas.add(tglbtnIBW);
 		tglbtnIBW.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnIBW.setBounds(20, 140, 82, 20);
+		tglbtnIBW.setBounds(20, 180, 82, 20);
 		MetricaEER.add(tglbtnIBW);
 		
 		JToggleButton tglbtnEER = new JToggleButton("REE");
@@ -248,8 +260,58 @@ public class CalculadoraGUI_Eer extends JFrame {
 		tglbtnEER.setSelected(true);
 		bgMetricas.add(tglbtnEER);
 		tglbtnEER.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnEER.setBounds(20, 180, 82, 20);
+		tglbtnEER.setBounds(20, 220, 82, 20);
 		MetricaEER.add(tglbtnEER);
+		
+		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					lblExito.setVisible(false);
+					lblError.setVisible(false);
+					lblTipoError.setText("");
+					tfResultado_EER.setText("");
+					
+					double altura = Double.parseDouble(tfAltura_EER.getText());
+					double peso = Double.parseDouble(tfPeso_EER.getText());
+					int edad = Integer.parseInt(tfEdad_EER.getText());
+					
+					String sexo = comboSexo_EER.getSelectedItem().toString();
+					
+					String actividad = "";
+		            if (rdbtnSedentario.isSelected()) actividad = "Sedentario";
+		            else if (rdbtnLigero.isSelected()) actividad = "Ligero";
+		            else if (rdbtnModerado.isSelected()) actividad = "Moderado";
+		            else if (rdbtnActivo.isSelected()) actividad = "Activo";
+		            else if (rdbtnMuyActivo.isSelected()) actividad = "Muy Activo";
+					
+					HealthCalc calc = new HealthCalcImpl();
+					double resultado = calc.eer(sexo, edad, peso, altura, actividad);
+					tfResultado_EER.setText(String.format("%.2f", resultado));
+					lblExito.setVisible(true);
+					
+			} catch (InvalidHealthDataException ex) {
+				lblError.setVisible(true);
+				lblTipoError.setText(ex.getMessage());
+				tfResultado_EER.setText("ERROR");
+				 
+			} catch (NumberFormatException ex) {
+				lblError.setVisible(true);
+				lblTipoError.setText("Datos incompletos/Uso de caracteres no numéricos");
+				tfResultado_EER.setText("ERROR");
+				
+			} catch (Exception ex) {
+				lblError.setVisible(true);
+				lblTipoError.setText("Fallo inesperado");
+				tfResultado_EER.setText("ERROR");
+				
+				}
+			}
+		});
+		btnCalcular.setBackground(new Color(108, 193, 162));
+		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnCalcular.setBounds(520, 150, 120, 100);
+		MetricaEER.add(btnCalcular);
 		
 		JButton btnInicio = new JButton("VOLVER");
 		btnInicio.addActionListener(new ActionListener() {
