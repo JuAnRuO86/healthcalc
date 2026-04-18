@@ -120,6 +120,18 @@ public class CalculadoraGUI_IBW extends JFrame {
 		panelMetricaContainer.add(textresultado_IBW);
 		textresultado_IBW.setColumns(10);
 		
+		JLabel lblNewLabel_1 = new JLabel("kg");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(281, 259, 44, 12);
+		panelMetricaContainer.add(lblNewLabel_1);
+		
+		JLabel lblMensajeError = new JLabel("¡No son válidos los datos introducidos!");
+		lblMensajeError.setVisible(false);
+		lblMensajeError.setForeground(new Color(196, 0, 0));
+		lblMensajeError.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		lblMensajeError.setBounds(20, 306, 251, 18);
+		panelMetricaContainer.add(lblMensajeError);
+		
 		JLabel lblExito = new JLabel(" ÉXITO");
 		lblExito.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblExito.setVisible(false);
@@ -146,6 +158,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 				try {
 					lblExito.setVisible(false);
 					lblError.setVisible(false);
+					lblMensajeError.setVisible(false);
 					textresultado_IBW.setText("");
 					
 					// Obtener altura
@@ -163,15 +176,17 @@ public class CalculadoraGUI_IBW extends JFrame {
 				} catch (NumberFormatException ex) {
 					// Error si el usuario mete letras o deja vacío
 					lblError.setVisible(true);
+					lblMensajeError.setVisible(true);
 					System.out.println(ex.getMessage());
 				} catch (InvalidHealthDataException ex) {
 					// Errores controlados por vuestro ibwLorentz (ej. altura < 30)
 					lblError.setVisible(true);
+					lblMensajeError.setVisible(true);
 					System.out.println(ex.getMessage());
 				} catch (Exception ex) {
 					// Cualquier otro error inesperado
 					lblError.setVisible(true);
-					textresultado_IBW.setText("Error inesperado");
+					lblMensajeError.setVisible(true);
 				}
 			}
 		});

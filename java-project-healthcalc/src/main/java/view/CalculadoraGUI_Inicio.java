@@ -74,6 +74,13 @@ public class CalculadoraGUI_Inicio extends JFrame {
 		Inicio.add(btnBMI);
 		
 		JButton btnIBW = new JButton("IBW");
+		btnIBW.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculadoraGUI_IBW ventana_IBW= new CalculadoraGUI_IBW();
+				ventana_IBW.setVisible(true);
+				dispose();
+			}
+		});
 		btnIBW.setBackground(new Color(128, 255, 255));
 		btnIBW.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnIBW.setBounds(300, 350, 100, 50);
