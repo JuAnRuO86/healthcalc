@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CalculadoraGUI_Eer extends JFrame {
 
@@ -209,6 +211,15 @@ public class CalculadoraGUI_Eer extends JFrame {
 		MetricaEER.add(lblExito);
 		
 		JToggleButton tglbtnBMI = new JToggleButton("BMI");
+		tglbtnBMI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnBMI.isSelected()) {
+		            CalculadoraGUI_BMI ventana_BMI = new CalculadoraGUI_BMI();
+		            ventana_BMI.setVisible(true);
+		            dispose();
+				}
+			}
+		});
 		tglbtnBMI.setBackground(new Color(108, 193, 162));
 		bgMetricas.add(tglbtnBMI);
 		tglbtnBMI.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -216,6 +227,16 @@ public class CalculadoraGUI_Eer extends JFrame {
 		MetricaEER.add(tglbtnBMI);
 		
 		JToggleButton tglbtnIBW = new JToggleButton("IBW");
+		tglbtnIBW.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnIBW.isSelected()) {
+		            CalculadoraGUI_IBW ventana_IBW = new CalculadoraGUI_IBW();
+		            ventana_IBW.setVisible(true);
+		            dispose();
+		        }
+		    }
+			
+		});
 		tglbtnIBW.setBackground(new Color(108, 193, 162));
 		bgMetricas.add(tglbtnIBW);
 		tglbtnIBW.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -229,5 +250,18 @@ public class CalculadoraGUI_Eer extends JFrame {
 		tglbtnEER.setFont(new Font("Tahoma", Font.BOLD, 12));
 		tglbtnEER.setBounds(20, 180, 82, 20);
 		MetricaEER.add(tglbtnEER);
+		
+		JButton btnInicio = new JButton("VOLVER");
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculadoraGUI_Inicio Menu = new CalculadoraGUI_Inicio();
+				Menu.setVisible(true);
+				dispose();
+			}
+		});
+		btnInicio.setBackground(new Color(108, 193, 162));
+		btnInicio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnInicio.setBounds(520, 20, 120, 40);
+		MetricaEER.add(btnInicio);
 	}
 }

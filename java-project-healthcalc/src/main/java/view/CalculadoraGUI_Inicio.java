@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CalculadoraGUI_Inicio extends JFrame {
 
@@ -49,32 +51,49 @@ public class CalculadoraGUI_Inicio extends JFrame {
 		JLabel lblTitulo = new JLabel("CALCULADORA DE SALUD");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblTitulo.setBounds(50, 50, 560, 50);
+		lblTitulo.setBounds(50, 125, 560, 50);
 		Inicio.add(lblTitulo);
 		
 		JLabel lblNewLabel = new JLabel("Por favor, seleccione una métrica inicial para calcular.");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblNewLabel.setBounds(50, 130, 560, 50);
+		lblNewLabel.setBounds(50, 230, 560, 50);
 		Inicio.add(lblNewLabel);
 		
 		JButton btnBMI = new JButton("BMI");
 		btnBMI.setBackground(new Color(128, 255, 255));
 		btnBMI.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnBMI.setBounds(100, 250, 100, 50);
+		btnBMI.setBounds(100, 350, 100, 50);
 		Inicio.add(btnBMI);
 		
 		JButton btnIBW = new JButton("IBW");
 		btnIBW.setBackground(new Color(128, 255, 255));
 		btnIBW.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnIBW.setBounds(300, 250, 100, 50);
+		btnIBW.setBounds(300, 350, 100, 50);
 		Inicio.add(btnIBW);
 		
 		JButton btnEER = new JButton("REE");
+		btnEER.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculadoraGUI_Eer ventana_EER = new CalculadoraGUI_Eer();
+				ventana_EER.setVisible(true);
+				dispose();
+			}
+		});
 		btnEER.setBackground(new Color(128, 255, 255));
 		btnEER.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnEER.setBounds(500, 250, 100, 50);
+		btnEER.setBounds(500, 350, 100, 50);
 		Inicio.add(btnEER);
+		
+		JButton btnNewButton = new JButton("SALIR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnNewButton.setBounds(480, 20, 150, 50);
+		Inicio.add(btnNewButton);
 	}
 
 }
