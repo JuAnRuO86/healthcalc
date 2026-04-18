@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
 
 public class CalculadoraGUI_IBW extends JFrame {
 
@@ -52,56 +53,44 @@ public class CalculadoraGUI_IBW extends JFrame {
 	 */
 	public CalculadoraGUI_IBW() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 676, 436);
+		setBounds(100, 100, 675, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnBMI = new JButton("BMI");
-		btnBMI.setBounds(30, 86, 84, 20);
-		contentPane.add(btnBMI);
-		
-		JButton btnIBW = new JButton("IBW");
-		btnIBW.setBounds(30, 116, 84, 20);
-		contentPane.add(btnIBW);
-		
-		JButton btnREE = new JButton("REE");
-		btnREE.setBounds(30, 147, 84, 20);
-		contentPane.add(btnREE);
-		
 		JPanel panelMetricaContainer = new JPanel();
 		panelMetricaContainer.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panelMetricaContainer.setBounds(112, 54, 378, 335);
+		panelMetricaContainer.setBounds(100, 50, 400, 350);
 		contentPane.add(panelMetricaContainer);
 		panelMetricaContainer.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
-		panel.setBounds(10, 26, 358, 185);
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
+		panel.setBounds(20, 30, 350, 200);
 		panelMetricaContainer.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblAltura_IBW = new JLabel("Altura(cm)");
 		lblAltura_IBW.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAltura_IBW.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAltura_IBW.setBounds(10, 90, 77, 19);
+		lblAltura_IBW.setBounds(10, 90, 80, 20);
 		panel.add(lblAltura_IBW);
 		
 		textIBW = new JTextField();
-		textIBW.setBounds(113, 90, 121, 18);
+		textIBW.setBounds(110, 90, 80, 20);
 		panel.add(textIBW);
 		textIBW.setColumns(10);
 		
 		JLabel lblsexo_IBW = new JLabel("SEXO");
 		lblsexo_IBW.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblsexo_IBW.setHorizontalAlignment(SwingConstants.CENTER);
-		lblsexo_IBW.setBounds(23, 136, 64, 15);
+		lblsexo_IBW.setBounds(10, 140, 80, 20);
 		panel.add(lblsexo_IBW);
 		
 		JComboBox comboSexo_IBW = new JComboBox();
 		comboSexo_IBW.setModel(new DefaultComboBoxModel(new String[] {"masculino", "femenino"}));
-		comboSexo_IBW.setBounds(114, 134, 98, 19);
+		comboSexo_IBW.setBounds(110, 140, 80, 20);
 		panel.add(comboSexo_IBW);
 		
 		JLabel lblInsertardatos = new JLabel("Inserte los datos correspondientes");
@@ -121,18 +110,19 @@ public class CalculadoraGUI_IBW extends JFrame {
 		textresultado_IBW.setColumns(10);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCalcular.setBounds(516, 147, 120, 32);
+		btnCalcular.setBounds(520, 150, 120, 40);
 		contentPane.add(btnCalcular);
 		
-		JLabel lblNewLabel_1 = new JLabel("MÉTRICA IBW");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(141, 24, 225, 20);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblMetrica = new JLabel("MÉTRICA IBW");
+		lblMetrica.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMetrica.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMetrica.setBounds(100, 10, 400, 30);
+		contentPane.add(lblMetrica);
 		
 		JLabel lblExito = new JLabel(" ÉXITO");
 		lblExito.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -140,7 +130,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 		lblExito.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExito.setForeground(new Color(0, 255, 0));
-		lblExito.setBounds(516, 222, 120, 101);
+		lblExito.setBounds(520, 250, 120, 100);
 		contentPane.add(lblExito);
 		
 		JLabel lblFracaso = new JLabel("ERROR");
@@ -150,8 +140,20 @@ public class CalculadoraGUI_IBW extends JFrame {
 		lblFracaso.setBackground(new Color(255, 255, 255));
 		lblFracaso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFracaso.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblFracaso.setBounds(516, 222, 120, 101);
+		lblFracaso.setBounds(520, 250, 120, 100);
 		contentPane.add(lblFracaso);
+		
+		JButton btnBMI = new JButton("BMI");
+		btnBMI.setBounds(20, 100, 85, 20);
+		contentPane.add(btnBMI);
+		
+		JButton btnIBW = new JButton("IBW");
+		btnIBW.setBounds(20, 140, 85, 20);
+		contentPane.add(btnIBW);
+		
+		JButton btnERR = new JButton("REE");
+		btnERR.setBounds(20, 180, 85, 20);
+		contentPane.add(btnERR);
 
 	}
 }
