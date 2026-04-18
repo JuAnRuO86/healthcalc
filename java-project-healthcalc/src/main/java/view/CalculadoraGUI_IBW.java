@@ -60,98 +60,95 @@ public class CalculadoraGUI_IBW extends JFrame {
 	 */
 	public CalculadoraGUI_IBW() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 675, 500);
+		setBounds(100, 100, 675, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(128, 128, 255));
+		contentPane.setBackground(new Color(205, 235, 222));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panelMetricaContainer = new JPanel();
-		panelMetricaContainer.setBackground(new Color(106, 106, 255));
+		panelMetricaContainer.setBackground(new Color(160, 218, 193));
 		panelMetricaContainer.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panelMetricaContainer.setBounds(100, 50, 400, 350);
+		panelMetricaContainer.setBounds(100, 85, 400, 450);
 		contentPane.add(panelMetricaContainer);
 		panelMetricaContainer.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(72, 72, 255));
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
+		panel.setBackground(new Color(108, 193, 162));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 0), new Color(160, 160, 160)), "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
 		panel.setBounds(20, 30, 350, 200);
 		panelMetricaContainer.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblAltura_IBW = new JLabel("Altura(cm)");
-		lblAltura_IBW.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAltura_IBW.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblAltura_IBW.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAltura_IBW.setBounds(10, 90, 80, 20);
+		lblAltura_IBW.setBounds(0, 60, 120, 30);
 		panel.add(lblAltura_IBW);
 		
 		textIBW = new JTextField();
-		textIBW.setBounds(110, 90, 80, 20);
+		textIBW.setBounds(130, 60, 150, 30);
 		panel.add(textIBW);
 		textIBW.setColumns(10);
 		
 		JLabel lblsexo_IBW = new JLabel("SEXO");
-		lblsexo_IBW.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblsexo_IBW.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblsexo_IBW.setHorizontalAlignment(SwingConstants.CENTER);
-		lblsexo_IBW.setBounds(10, 140, 80, 20);
+		lblsexo_IBW.setBounds(0, 130, 120, 30);
 		panel.add(lblsexo_IBW);
 		
 		JComboBox comboSexo_IBW = new JComboBox();
+		comboSexo_IBW.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboSexo_IBW.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
-		comboSexo_IBW.setBounds(110, 140, 80, 20);
+		comboSexo_IBW.setBounds(130, 130, 150, 30);
 		panel.add(comboSexo_IBW);
 		
-		JLabel lblInsertardatos = new JLabel("Inserte los datos correspondientes");
-		lblInsertardatos.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblInsertardatos.setBounds(23, 37, 211, 28);
-		panel.add(lblInsertardatos);
-		
 		JLabel lblNewLabel = new JLabel("Resultado de la métrica:");
-		lblNewLabel.setBounds(10, 252, 157, 27);
+		lblNewLabel.setBounds(20, 250, 200, 30);
 		panelMetricaContainer.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		textresultado_IBW = new JTextField();
 		textresultado_IBW.setEditable(false);
-		textresultado_IBW.setBounds(175, 256, 96, 18);
+		textresultado_IBW.setBounds(210, 250, 100, 30);
 		panelMetricaContainer.add(textresultado_IBW);
 		textresultado_IBW.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("kg");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(281, 259, 44, 12);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(325, 250, 40, 30);
 		panelMetricaContainer.add(lblNewLabel_1);
 		
 		JLabel lblMensajeError = new JLabel("¡No son válidos los datos introducidos!");
+		lblMensajeError.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMensajeError.setVisible(false);
 		lblMensajeError.setForeground(new Color(196, 0, 0));
-		lblMensajeError.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-		lblMensajeError.setBounds(20, 306, 251, 18);
+		lblMensajeError.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblMensajeError.setBounds(20, 300, 350, 30);
 		panelMetricaContainer.add(lblMensajeError);
 		
 		JLabel lblExito = new JLabel(" ÉXITO");
-		lblExito.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblExito.setVisible(false);
-		lblExito.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblExito.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExito.setForeground(new Color(0, 255, 0));
-		lblExito.setBounds(520, 250, 120, 100);
+		lblExito.setBounds(520, 350, 120, 100);
 		contentPane.add(lblExito);
 		
 		JLabel lblError = new JLabel("ERROR");
 		lblError.setVisible(false);
 		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblError.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblError.setBackground(new Color(255, 255, 255));
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblError.setBounds(520, 250, 120, 100);
+		lblError.setBounds(520, 350, 120, 100);
 		contentPane.add(lblError);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular.setBackground(new Color(108, 193, 162));
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -190,7 +187,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 				}
 			}
 		});
-		btnCalcular.setBounds(520, 150, 120, 40);
+		btnCalcular.setBounds(520, 150, 120, 100);
 		contentPane.add(btnCalcular);
 		
 		JLabel lblMetrica = new JLabel("MÉTRICA IBW");
@@ -202,9 +199,9 @@ public class CalculadoraGUI_IBW extends JFrame {
 		
 		JToggleButton tglbtnBMI = new JToggleButton("BMI");
 		buttonGroup.add(tglbtnBMI);
-		tglbtnBMI.setBackground(new Color(255, 255, 255));
+		tglbtnBMI.setBackground(new Color(108, 193, 162));
 		tglbtnBMI.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnBMI.setBounds(20, 100, 82, 20);
+		tglbtnBMI.setBounds(20, 140, 82, 20);
 		contentPane.add(tglbtnBMI);
 		tglbtnBMI.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -217,16 +214,18 @@ public class CalculadoraGUI_IBW extends JFrame {
 		});
 		
 		JToggleButton tglbtnIBW = new JToggleButton("IBW");
+		tglbtnIBW.setBackground(new Color(108, 193, 162));
 		tglbtnIBW.setSelected(true);
 		buttonGroup.add(tglbtnIBW);
 		tglbtnIBW.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnIBW.setBounds(20, 140, 82, 20);
+		tglbtnIBW.setBounds(20, 180, 82, 20);
 		contentPane.add(tglbtnIBW);
 		
 		JToggleButton tglbtnEER = new JToggleButton("REE");
+		tglbtnEER.setBackground(new Color(108, 193, 162));
 		buttonGroup.add(tglbtnEER);
 		tglbtnEER.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tglbtnEER.setBounds(20, 180, 82, 20);
+		tglbtnEER.setBounds(20, 220, 82, 20);
 		contentPane.add(tglbtnEER);
 		tglbtnEER.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -239,6 +238,7 @@ public class CalculadoraGUI_IBW extends JFrame {
 		});
 		
 		JButton btnInicio = new JButton("VOLVER");
+		btnInicio.setBackground(new Color(108, 193, 162));
 		btnInicio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnInicio.setBounds(520, 20, 120, 40);
 		contentPane.add(btnInicio);

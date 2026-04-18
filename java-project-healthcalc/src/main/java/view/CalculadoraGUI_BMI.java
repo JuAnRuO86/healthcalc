@@ -84,62 +84,62 @@ public class CalculadoraGUI_BMI extends JFrame {
 		panelDatos.setBackground(new Color(108, 193, 162));
 		panelDatos.setLayout(null);
 		panelDatos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 0), new Color(0, 0, 0)), "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
-		panelDatos.setBounds(28, 24, 350, 200);
+		panelDatos.setBounds(30, 25, 350, 200);
 		panelMetricaContainer.add(panelDatos);
 		
 		JLabel lblAltura_IBW_1 = new JLabel("Altura(cm)");
 		lblAltura_IBW_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAltura_IBW_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAltura_IBW_1.setBounds(0, 59, 120, 30);
+		lblAltura_IBW_1.setBounds(0, 60, 120, 30);
 		panelDatos.add(lblAltura_IBW_1);
 		
 		textFieldAltura = new JTextField();
 		textFieldAltura.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldAltura.setColumns(10);
-		textFieldAltura.setBounds(130, 65, 155, 20);
+		textFieldAltura.setBounds(130, 60, 150, 30);
 		panelDatos.add(textFieldAltura);
 		
 		JLabel lblsexo_IBW_1 = new JLabel("Peso(kg)");
 		lblsexo_IBW_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblsexo_IBW_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblsexo_IBW_1.setBounds(0, 127, 120, 30);
+		lblsexo_IBW_1.setBounds(0, 130, 120, 30);
 		panelDatos.add(lblsexo_IBW_1);
 		
 		textFieldPeso = new JTextField();
 		textFieldPeso.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(130, 132, 155, 20);
+		textFieldPeso.setBounds(130, 130, 150, 30);
 		panelDatos.add(textFieldPeso);
 		
 		JPanel panelResultados = new JPanel();
 		panelResultados.setBackground(new Color(108, 193, 162));
-		panelResultados.setBounds(28, 225, 350, 151);
+		panelResultados.setBounds(30, 225, 350, 150);
 		panelMetricaContainer.add(panelResultados);
 		panelResultados.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 0), new Color(0, 0, 0)), "RESULTADOS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 128, 0)));
 		panelResultados.setLayout(null);
 		
 		JLabel lblBmi = new JLabel("bmi:");
-		lblBmi.setBounds(0, 41, 120, 27);
+		lblBmi.setBounds(0, 40, 120, 30);
 		panelResultados.add(lblBmi);
 		lblBmi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBmi.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JLabel lblClasificacin = new JLabel("Clasificación:");
-		lblClasificacin.setBounds(10, 94, 110, 27);
+		lblClasificacin.setBounds(10, 90, 110, 30);
 		panelResultados.add(lblClasificacin);
 		lblClasificacin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClasificacin.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		textResultadoBMI = new JTextField();
 		textResultadoBMI.setEditable(false);
-		textResultadoBMI.setBounds(130, 44, 155, 20);
+		textResultadoBMI.setBounds(130, 40, 150, 30);
 		panelResultados.add(textResultadoBMI);
 		textResultadoBMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textResultadoBMI.setColumns(10);
 		
 		textResultadoClasificacion = new JTextField();
 		textResultadoClasificacion.setEditable(false);
-		textResultadoClasificacion.setBounds(130, 98, 155, 18);
+		textResultadoClasificacion.setBounds(130, 90, 150, 30);
 		panelResultados.add(textResultadoClasificacion);
 		textResultadoClasificacion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textResultadoClasificacion.setColumns(10);
@@ -147,8 +147,8 @@ public class CalculadoraGUI_BMI extends JFrame {
 		JLabel lblTipoError = new JLabel("");
 		lblTipoError.setForeground(new Color(255, 0, 0));
 		lblTipoError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipoError.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTipoError.setBounds(10, 384, 380, 54);
+		lblTipoError.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTipoError.setBounds(10, 380, 380, 50);
 		panelMetricaContainer.add(lblTipoError);
 		
 		JLabel lblExito = new JLabel("ÉXITO");
@@ -156,7 +156,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 		lblExito.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblExito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExito.setForeground(new Color(0, 255, 0));
-		lblExito.setBounds(520, 270, 120, 100);
+		lblExito.setBounds(520, 350, 120, 100);
 		contentPane.add(lblExito);
 		
 		JLabel lblError = new JLabel("ERROR");
@@ -165,7 +165,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 		lblError.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblError.setBackground(new Color(255, 255, 255));
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setBounds(520, 270, 120, 100);
+		lblError.setBounds(520, 350, 120, 100);
 		contentPane.add(lblError);
 		
 		JToggleButton tglbtnBMI = new JToggleButton("BMI");
@@ -242,7 +242,7 @@ public class CalculadoraGUI_BMI extends JFrame {
 				} catch (NumberFormatException ex) {
 		            // Error al convertir texto a número (letras, símbolos...)
 		            lblError.setVisible(true);
-		            lblTipoError.setText("Error en peso, use números en cm (ej: 175)");
+		            lblTipoError.setText("Utilice solo caracteres numéricos. Use el punto en lugar de la coma.");
 		        } catch (InvalidHealthDataException ex) {
 		            // Errores de lógica (peso < 0, altura fuera de rango biológico, etc.)
 		            lblError.setVisible(true);
@@ -254,13 +254,13 @@ public class CalculadoraGUI_BMI extends JFrame {
 		            lblError.setVisible(true);
 		            textResultadoBMI.setText("");
 		            textResultadoClasificacion.setText("");
-		            lblTipoError.setText(ex.getMessage());
+		            lblTipoError.setText("Fallo inesperado");
 		        }
 			}
 		});
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCalcular.setBackground(new Color(108, 193, 162));
-		btnCalcular.setBounds(520, 150, 120, 40);
+		btnCalcular.setBounds(520, 150, 120, 100);
 		contentPane.add(btnCalcular);
 		
 		JLabel lblMtricaBmi = new JLabel("MÉTRICA BMI");
