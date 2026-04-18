@@ -379,3 +379,7 @@ Para saber cuántas calorías debo consumir según mis características
     Esquema del escenario: Cálculo del EER según características del usuario
 
 [eer.feature](https://github.com/ISAgrupo08/healthcalc/blob/P3/java-project-healthcalc/src/test/resources/eer.feature)
+
+### Interfaz Gráfica de Usuario
+
+[Prototipo](https://github.com/ISAgrupo08/healthcalc/blob/P4/java-project-healthcalc/doc/gui/PrototipoGUI.PNG)
