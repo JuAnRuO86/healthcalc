@@ -61,6 +61,13 @@ public class CalculadoraGUI_Inicio extends JFrame {
 		Inicio.add(lblNewLabel);
 		
 		JButton btnBMI = new JButton("BMI");
+		btnBMI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculadoraGUI_BMI ventana_BMI= new CalculadoraGUI_BMI();
+				ventana_BMI.setVisible(true);
+				dispose();
+			}
+		});
 		btnBMI.setBackground(new Color(128, 255, 255));
 		btnBMI.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnBMI.setBounds(100, 350, 100, 50);
