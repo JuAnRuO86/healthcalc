@@ -13,8 +13,8 @@ public class ProxyHealthCalc implements HealthHospital, HealthStats {
     private int Contador_Peso = 0;
     private float Suma_IMC = 0;
     private int Contador_IMC = 0;
-    private int Hombres = 0;
-    private int Mujeres = 0;
+    private int NumHombres = 0;
+    private int NumMujeres = 0;
     private int Total_Pacientes = 0;
 
     // Constructor
@@ -61,9 +61,9 @@ public class ProxyHealthCalc implements HealthHospital, HealthStats {
         // Control de género
         char g = Character.toUpperCase(genero);
         if (g == 'H') {
-            this.Hombres++;
+            this.NumHombres++;
         } else if (g == 'M') {
-            this.Mujeres++;
+            this.NumMujeres++;
         }
 
         this.Total_Pacientes++;
@@ -99,12 +99,12 @@ public class ProxyHealthCalc implements HealthHospital, HealthStats {
 
     @Override
     public int numSexoH() {
-        return this.Hombres;
+        return this.NumHombres;
     }
 
     @Override
     public int numSexoM() {
-        return this.Mujeres;
+        return this.NumMujeres;
     }
 
     @Override
