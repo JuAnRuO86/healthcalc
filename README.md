@@ -387,3 +387,21 @@ Para saber cuántas calorías debo consumir según mis características
 ![BMI](java-project-healthcalc/doc/gui/CalculadoraBMI.PNG)
 ![IBW](java-project-healthcalc/doc/gui/CalculadoraIBW.PNG)
 ![REE](java-project-healthcalc/doc/gui/CalculadoraEER.png)
+
+## Práctica 6: Patrones de Diseño
+
+En esta práctica se ha rediseñado y extendido la aplicación de cálculo de salud integrando patrones de diseño estructurales y de creación.
+
+### 1. Patrón Singleton (Instancia Única)
+
+* **Propósito:** garantizar que la clase `HealthCalcImpl` tenga una única instancia en toda la aplicación y proporcionar un punto de acceso global a ella.
+* **Implementación:** se ha privatizado el constructor de `HealthCalcImpl` para evitar la creación de objetos mediante el operador `new` desde el exterior. Para ello se ha añadido un atributo estático privado `instance` del mismo tipo de la clase.
+
+![Diagrama UML Singleton](./design_patterns/DiagramaUML_Singleton.png)
+
+### 2. Patrón Adapter
+
+* **Propósito:** permitir que una interfaz de un sistema externo (el Sistema Hospitalario `HealthHospital`) pueda utilizar la lógica de nuestra calculadora existente (`HealthCalc`), a pesar de que utilicen métodos y unidades de medidas distintas (metros y gramos frente a centímetros y kilogramos).
+* **Implementación:** el sistema externo del hospital (`HealthHospital`) usa nuestra lógica existente (`HealthCalc`) a través de la clase puente `AdapterHospital`, que implementa la interfaz objetivo `HealthHospital`. El adaptador realiza la traducción de datos "al vuelo" (conversión de gramos a kilogramos, redondeo de tipos de datos de `double` a `int`...)
+
+![Diagrama UML Adapter](./design_patterns/DiagramaUML_Adapter.png)
