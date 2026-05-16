@@ -405,3 +405,7 @@ En esta práctica se ha rediseñado y extendido la aplicación de cálculo de sa
 * **Implementación:** el sistema externo del hospital (`HealthHospital`) usa nuestra lógica existente (`HealthCalc`) a través de la clase puente `AdapterHospital`, que implementa la interfaz objetivo `HealthHospital`. El adaptador realiza la traducción de datos "al vuelo" (conversión de gramos a kilogramos, redondeo de tipos de datos de `double` a `int`...)
 
 ![Diagrama UML Adapter](./design_patterns/DiagramaUML_Adapter.png)
+
+### 4. Patrón Decorator
+
+![Diagrama UML Decorator](./design_patterns/DiagramaUML_Decorator.png)
