@@ -37,7 +37,7 @@ public class ProxyHealthCalc implements HealthHospital, HealthStats {
         // Registramos los datos
         this.Suma_Altura += altura;
         this.Contador_Altura++;
-        this.Suma_Peso += peso;
+        this.Suma_Peso += (peso / 1000.0f);
         this.Contador_Peso++;
 
         if (resultado != null && resultado.getFirst() != null) {
@@ -60,9 +60,9 @@ public class ProxyHealthCalc implements HealthHospital, HealthStats {
 
         // Control de género
         char g = Character.toUpperCase(genero);
-        if (g == 'H') {
+        if (g == 'M') {
             this.NumHombres++;
-        } else if (g == 'M') {
+        } else if (g == 'F') {
             this.NumMujeres++;
         }
 
